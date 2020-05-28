@@ -1,0 +1,186 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Шаблон лабораторной работы</title>
+</head>
+<body>
+
+<script>
+/*
+Выводите значения в консоль браузера с помощью команды console.log() (вызов консоли: F12->консоль)
+
+Задание 1. Напишите функцию power(), которая принимает две целочисленных значения. Функция должна возвращать результат возведения первого числа в степень второго.*/
+console.log('ЗАДАНИЕ 1');  
+function power(a, n) {
+  let result = a;
+
+  for (let i = 1; i < n; i++) {
+    result *= a;
+  }
+
+  return result;
+}
+
+let a = prompt("a?", '');
+if (a-Math.floor(a)==0) {
+    let n = prompt("n?", '');
+    if (n-Math.floor(n)==0) {
+        console.log( power(a, n) );
+    }
+    else {
+        console.log('Число ${n} не поддерживается, введите целое число');  
+    }
+}
+ else {
+    console.log('Число ${a} не поддерживается, введите целое число');
+}
+/* 
+Задание 2. Напишите функцию compare(), которая принимает целочисленное значение x и возвращает  анонимную функцию. Анонимная функция должна принимать целочисленное значение y и возвращать результат сравнения значений y и x как:
+- Если y больше, чем x, то возвращается true
+- Если y меньше, чем x, то возвращается false
+- Если значения равны, то возвращается null */
+console.log('ЗАДАНИЕ 2'); 
+function compare(x){
+return function (y) {
+if(y>x) return true 
+else if (y<x) return false
+else if (y == x) return 0
+  
+}
+}
+var qwe=compare(100);
+console.log(qwe(110));
+/*
+Задание 3. Дана строка. Сделайте заглавным первый символ каждого слова этой строки. Для этого сделайте вспомогательную функцию ucfirst, которая будет получать строку, делать первый символ этой строки заглавным и возвращать обратно строку с заглавной первой буквой. 
+*/
+console.log('ЗАДАНИЕ 3'); 
+var w = 'приветствую мой друг';
+
+function ucfirst(w){
+return w.toUpperCase(w).slice(0, 1) + w.slice(1);
+};
+var e = w.split(' ');
+var r ='';
+for(key in e){
+r += ucfirst(e[key]) + ' ';
+}
+console.log(r);
+/*
+Задание 4. Создайте пустой объект book1. Добавьте объекту свойства: title, pubYear и price с произвольными значениями. 
+Добавьте объекту book1 свойство show. Свойство должно содержать анонимную функцию выводящую название и цену книги.
+Создайте объект book2 и установите свойства title, pubYear и price с произвольными значениями в момент создания объекта.
+Опишите функцию showBook(), которая выводит название и цену книги. Добавьте объекту book2 свойство show. Свойство должно содержать функцию showBook().
+Выведите свойства объектов в цикле.
+Вызовите метод show() у обоих объектов.*/
+console.log('ЗАДАНИЕ 4'); 
+let book1 = {};
+        book1 = {
+            title: "Как закалялась сталь",
+            pubYear: 1934,
+            price: "350 руб.",
+            show: function() {
+                console.log(book1.title);
+                console.log(book1.price);
+            }
+        }
+        let book2 = {
+            title: "Морфий",
+            pubYear: 1927,
+            price: "200 руб."
+        };
+
+        function showBook() {
+            console.log(book2.title);
+            console.log(book2.price);
+        }
+        book2.show = function() {
+            showBook();
+        }
+        for (var key in book1) {
+            console.log(key);
+        }
+        book1.show();
+        book2.show();
+/*
+Задание 5. Дан исходный код:
+var a = [5, 12];
+var b = [];
+a[99] = 7;
+Записать в массив b квадраты значений массива a:
+- с помощью цикла for
+- с помощью цикла for in*/
+console.log('ЗАДАНИЕ 5'); 
+var j = [5, 12];
+var b = [];
+j[99] = 7;
+//for in
+for (var x in j) { 
+b = Math.pow(j[x], 2);
+console.log(b);}
+//for
+for (var i=0; j.length > i; i++){
+if(!isNaN(j[i])) {
+    console.log(Math.pow(j[i], 2))
+    }
+}
+/*
+Задание 6. Дан исходный код:
+var s = 'Мы знаем, что монохромный цвет - это градации серого';
+var txt = 'хром';
+var word;
+В значении переменной s найдите слово, содержащее подстроку, которая является значением переменной txt и присвойте его переменной word.*/
+console.log('ЗАДАНИЕ 6'); 
+ let ss = 'Мы знаем, что монохромный цвет - это градации серого';
+ let txt = 'хром';
+ let word;
+        tt = ss.toUpperCase().indexOf(txt.toUpperCase());
+        let spf;
+        while (tt < ss.length) {
+            if (ss[tt] != ' ') {
+                tt++
+            }
+            if (ss[tt] == ' ') {
+                spf = tt;
+                break;
+            }
+        }
+        let sp2 = spf;
+        let sp1;
+        spf--;
+        while (spf > 0) {
+            if (ss[spf] != ' ') {
+                spf--;
+            }
+            if (ss[spf] == ' ') {
+                sp1 = spf;
+                break;
+            }
+        }
+        tts = ss.substring(sp1, sp2);
+        word = tts.slice(1);
+        console.log(word);
+/*
+Задание 7. Создайте конструктор Book со свойствами title, pubYear и price. 
+Создайте объект типа Book передав в конструктор произвольные значения.
+Добавьте в прототип конструктора Book метод show, который выводит значения свойств title и price.
+Вызовите метод show созданного объекта.
+*/
+console.log('ЗАДАНИЕ 7'); 
+function Book(title, pubYear, price){
+    this.title = title;
+    this.pubYear = pubYear;
+    this.price = price;
+}
+let boook1 = new Book('Улица разбитых фонарей', 1998, 1500);
+        let boook2 = new Book('Улица разбитых фонарей 2', 1999, 1700);
+        Book.prototype.show = function() {
+            console.log(this.title);
+            console.log(this.pubYear);
+            console.log(this.price);
+        }
+        boook1.show();
+        boook2.show();
+</script>
+</body>
+</html>
